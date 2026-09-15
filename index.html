@@ -18,6 +18,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="/site.js" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -32,15 +34,16 @@
 </head>
 <body>
 <!--
-THESIS: A follow-up layer sold like infrastructure. One idea per screen, hierarchy by size and
-space. Refuses the agency landing page: no illustration hero, no stat row, no logo strip.
-OWN-WORLD: Cold black ground, dial-white type, one brushed-chrome material reserved for the
-primary action, the rail nodes and the beam lines. Vercel-style hairline grid fading under a
-radial mask, the Actira arrow-mark as a large low-opacity structural element. Geist, two weights.
+THESIS: A follow-up layer sold like infrastructure. The hero shows the product working instead of
+describing it. Refuses the agency landing page: no illustration hero, no stat row, no logo strip.
+OWN-WORLD: Cold black ground, dial-white type. One material: liquid chrome, rendered live in WebGL,
+bright silver on the actions, near-black with silver veins behind the hero. Hairline grid with a
+pointer spotlight, Actira arrow-mark as watermark. Geist, two weights.
 STORY: You already paid for the lead. Most of it dies before the consultation. Actira catches it.
 Book 15 minutes.
-FIRST VIEWPORT: Full-height. Grid under a radial mask, arrow-mark faint at right, two-line
-display headline left in a 900px column, lead, one chrome CTA, one dim qualifier.
+FIRST VIEWPORT: Full-height. Liquid chrome field masked to the right, grid over it. Left: two-line
+display headline, lead, silver liquid-chrome CTA, qualifier. Right: live example feed of one
+inquiry going from form to booked consultation.
 FORM: Instrument panel / product datasheet, brief-pinned by the founder, no roll.
 FINISH: unreviewed and undocumented is unfinished; this build ends with a batched inspection,
 the detector pass, and PRODUCT.md.
@@ -56,22 +59,79 @@ the detector pass, and PRODUCT.md.
 
 <main>
   <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-chrome" data-liquid-chrome="hero" aria-hidden="true"></div>
     <div class="hero-grid" aria-hidden="true"></div>
-    <img class="hero-mark" src="/assets/mark-800.png" width="800" height="315" alt="" aria-hidden="true" decoding="async" fetchpriority="low">
-    <div class="col">
-      <h1 id="hero-title" class="display">
-        <span class="line">Paid leads in.</span>
-        <span class="line">Booked consultations out.</span>
-      </h1>
-      <p class="lead">
-        Actira is the follow-up layer between your ad spend and your calendar.
-        Instant response, SMS and email follow-up, missed-call recovery,
-        reminders, no-show recovery.
-      </p>
-      <div class="actions">
-        <a class="btn-primary" href="https://calendly.com/actira">Book a 15-minute audit</a>
-        <p class="qualifier">For independent med spas running Meta Ads. No contracts.</p>
+    <div class="hero-spot" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1 id="hero-title" class="display">
+          <span class="line">Paid leads in.</span>
+          <span class="line">Booked consultations out.</span>
+        </h1>
+        <p class="lead">
+          Actira is the follow-up layer between your ad spend and your calendar.
+          Instant response, SMS and email follow-up, missed-call recovery,
+          reminders, no-show recovery.
+        </p>
+        <div class="actions">
+          <a class="btn-chrome" href="https://calendly.com/actira">
+            <span class="btn-chrome-fx" data-liquid-chrome="button" aria-hidden="true"></span>
+            <span class="btn-chrome-label">Book a 15-minute audit</span>
+          </a>
+          <p class="qualifier">For independent med spas running Meta Ads. No contracts.</p>
+        </div>
       </div>
+
+      <figure class="demo" data-demo aria-label="Example: one inquiry handled from form to booked consultation">
+        <figcaption class="demo-head">
+          <span class="demo-pulse" aria-hidden="true"></span>
+          <span class="demo-head-title">One inquiry, handled</span>
+          <span class="demo-tag">Example</span>
+        </figcaption>
+        <ol class="demo-feed">
+          <li class="demo-row" data-step>
+            <span class="demo-node" aria-hidden="true"></span>
+            <div class="demo-body">
+              <span class="demo-title">New lead from Instagram ad</span>
+              <span class="demo-meta">Jessica R. · Lip filler consultation</span>
+            </div>
+            <span class="demo-time">9:41 PM</span>
+          </li>
+          <li class="demo-row" data-step>
+            <span class="demo-node" aria-hidden="true"></span>
+            <div class="demo-body">
+              <span class="demo-title">SMS reply sent</span>
+              <p class="demo-bubble">Hi Jessica, thanks for reaching out about lip filler. Would a free consultation this week work? Thursday 4:30 or Saturday 11:00.</p>
+            </div>
+            <span class="demo-time">+0:42</span>
+          </li>
+          <li class="demo-row" data-step>
+            <span class="demo-node" aria-hidden="true"></span>
+            <div class="demo-body">
+              <span class="demo-title">Follow-up sent</span>
+              <span class="demo-meta">No reply yet. Second touch by email.</span>
+            </div>
+            <span class="demo-time">+1 day</span>
+          </li>
+          <li class="demo-row" data-step>
+            <span class="demo-node" aria-hidden="true"></span>
+            <div class="demo-body">
+              <span class="demo-title">Consultation booked</span>
+              <span class="demo-meta">Saturday 11:00 · added to your calendar</span>
+            </div>
+            <span class="demo-time">+26 h</span>
+          </li>
+          <li class="demo-row" data-step>
+            <span class="demo-node" aria-hidden="true"></span>
+            <div class="demo-body">
+              <span class="demo-title">Reminder sent</span>
+              <span class="demo-meta">The evening before the visit</span>
+            </div>
+            <span class="demo-time">Fri 6 PM</span>
+          </li>
+        </ol>
+      </figure>
     </div>
   </section>
 
@@ -79,7 +139,7 @@ the detector pass, and PRODUCT.md.
     <div class="beam" aria-hidden="true"></div>
     <div class="col">
       <div class="problem-grid">
-        <div>
+        <div data-reveal>
           <h2 id="problem-title" class="headline">You already paid for the lead.</h2>
           <p class="body">
             Most inquiries wait hours for a reply. By then the patient has messaged
@@ -87,7 +147,7 @@ the detector pass, and PRODUCT.md.
           </p>
           <p class="body strong">The ad worked. The follow-up didn't.</p>
         </div>
-        <figure class="leak" aria-hidden="true">
+        <figure class="leak" data-reveal aria-hidden="true">
           <div class="leak-bar leak-in"><span>Lead arrives</span></div>
           <div class="leak-bar leak-wait"><span>Waiting for a reply</span></div>
           <div class="leak-bar leak-gone"><span>Booked elsewhere</span></div>
@@ -98,48 +158,48 @@ the detector pass, and PRODUCT.md.
 
   <section class="flow" aria-labelledby="flow-title">
     <div class="col">
-      <h2 id="flow-title" class="headline">What happens after the lead arrives.</h2>
-      <div class="instrument">
+      <h2 id="flow-title" class="headline" data-reveal>What happens after the lead arrives.</h2>
+      <div class="instrument" data-reveal>
         <div class="instrument-grid" aria-hidden="true"></div>
         <ol class="rail">
-          <li><span class="node"></span><span class="step">Lead</span><span class="sub">Form, DM, call</span></li>
-          <li><span class="node"></span><span class="step">Instant response</span><span class="sub">Under a minute</span></li>
-          <li><span class="node"></span><span class="step">Follow-up</span><span class="sub">Until they answer</span></li>
-          <li><span class="node"></span><span class="step">Consultation</span><span class="sub">On your calendar</span></li>
-          <li><span class="node"></span><span class="step">Reminder</span><span class="sub">Before the visit</span></li>
-          <li><span class="node"></span><span class="step">Booked patient</span><span class="sub">In the chair</span></li>
+          <li style="--i:0"><span class="node"></span><span class="step">Lead</span><span class="sub">Form, DM, call</span></li>
+          <li style="--i:1"><span class="node"></span><span class="step">Instant response</span><span class="sub">Under a minute</span></li>
+          <li style="--i:2"><span class="node"></span><span class="step">Follow-up</span><span class="sub">Until they answer</span></li>
+          <li style="--i:3"><span class="node"></span><span class="step">Consultation</span><span class="sub">On your calendar</span></li>
+          <li style="--i:4"><span class="node"></span><span class="step">Reminder</span><span class="sub">Before the visit</span></li>
+          <li style="--i:5"><span class="node"></span><span class="step">Booked patient</span><span class="sub">In the chair</span></li>
         </ol>
       </div>
-      <p class="caption rail-note">Every step is handled the moment it is due, not when someone at the front desk has a minute.</p>
+      <p class="caption rail-note" data-reveal>Every step is handled the moment it is due, not when someone at the front desk has a minute.</p>
     </div>
   </section>
 
   <section class="panel included" aria-labelledby="included-title">
     <div class="beam" aria-hidden="true"></div>
     <div class="col">
-      <h2 id="included-title" class="headline">Included.</h2>
+      <h2 id="included-title" class="headline" data-reveal>Included.</h2>
       <ul class="list">
-        <li>
+        <li data-reveal style="--i:0">
           <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4A2.5 2.5 0 0 1 4 13.5z"/><path d="M8.5 9h7M8.5 12h4"/></svg>
           <span>Instant reply to every new inquiry, by SMS and email</span>
         </li>
-        <li>
+        <li data-reveal style="--i:1">
           <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6L20 8.5"/><path d="M20 4v4.5h-4.5"/><path d="M20 12a8 8 0 0 1-13.7 5.6L4 15.5"/><path d="M4 20v-4.5h4.5"/></svg>
           <span>Follow-up sequences for leads that go quiet</span>
         </li>
-        <li>
+        <li data-reveal style="--i:2">
           <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/><path d="M15 4l5 5M20 4l-5 5"/></svg>
           <span>Missed-call recovery by text</span>
         </li>
-        <li>
+        <li data-reveal style="--i:3">
           <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/><path d="M9.5 15.5l2 2 3.5-4"/></svg>
           <span>Consultation booking straight into your calendar</span>
         </li>
-        <li>
+        <li data-reveal style="--i:4">
           <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>
           <span>Appointment reminders</span>
         </li>
-        <li>
+        <li data-reveal style="--i:5">
           <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/><path d="M12 8v4l2.5 2.5"/></svg>
           <span>No-show recovery and dormant-lead reactivation</span>
         </li>
@@ -149,13 +209,16 @@ the detector pass, and PRODUCT.md.
 
   <section class="close" aria-labelledby="close-title">
     <img class="close-mark" src="/assets/mark-800.png" width="800" height="315" alt="" aria-hidden="true" decoding="async" loading="lazy">
-    <div class="col">
+    <div class="col" data-reveal>
       <h2 id="close-title" class="headline">See where your leads are leaking.</h2>
       <p class="body">
         15 minutes. You walk me through your current lead flow, I show you where
         it breaks and what it would take to close the gap.
       </p>
-      <a class="btn-primary" href="https://calendly.com/actira">Book a 15-minute audit</a>
+      <a class="btn-chrome" href="https://calendly.com/actira">
+        <span class="btn-chrome-fx" data-liquid-chrome="button" aria-hidden="true"></span>
+        <span class="btn-chrome-label">Book a 15-minute audit</span>
+      </a>
     </div>
   </section>
 </main>
