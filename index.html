@@ -6,12 +6,14 @@
   <title>Actira — Paid leads in. Booked consultations out.</title>
   <meta name="description" content="Actira is the follow-up layer between a med spa's ad spend and its calendar. Instant response, SMS and email follow-up, missed-call recovery, reminders, no-show recovery.">
   <meta name="theme-color" content="#0a0a0b">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="canonical" href="https://getactira.com/">
   <meta property="og:title" content="Actira — Paid leads in. Booked consultations out.">
   <meta property="og:description" content="The follow-up layer between your ad spend and your calendar. For independent med spas.">
   <meta property="og:url" content="https://getactira.com/">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://getactira.com/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
@@ -22,6 +24,7 @@
     "@type": "Organization",
     "name": "Actira",
     "url": "https://getactira.com/",
+    "logo": "https://getactira.com/assets/mark-800.png",
     "email": "hello@getactira.com",
     "description": "Lead-to-booking follow-up systems for independent med spas."
   }
@@ -30,26 +33,31 @@
 <body>
 <!--
 THESIS: A follow-up layer sold like infrastructure. One idea per screen, hierarchy by size and
-space only. Refuses the agency landing page: no hero illustration, no stat row, no logo strip,
-no feature cards.
-OWN-WORLD: Cold black ground (#0a0a0b / #111113), dial-white type, one brushed-chrome material
-reserved for the primary action and the rail. Geist, two weights. Hairlines at 8%, no shadows.
+space. Refuses the agency landing page: no illustration hero, no stat row, no logo strip.
+OWN-WORLD: Cold black ground, dial-white type, one brushed-chrome material reserved for the
+primary action, the rail nodes and the beam lines. Vercel-style hairline grid fading under a
+radial mask, the Actira arrow-mark as a large low-opacity structural element. Geist, two weights.
 STORY: You already paid for the lead. Most of it dies before the consultation. Actira catches it.
 Book 15 minutes.
-FIRST VIEWPORT: Full-height. Two-line display headline left-aligned in a 680px column, lead
-paragraph, one chrome CTA, one dim qualifier line. Nothing else.
+FIRST VIEWPORT: Full-height. Grid under a radial mask, arrow-mark faint at right, two-line
+display headline left in a 900px column, lead, one chrome CTA, one dim qualifier.
 FORM: Instrument panel / product datasheet, brief-pinned by the founder, no roll.
 FINISH: unreviewed and undocumented is unfinished; this build ends with a batched inspection,
 the detector pass, and PRODUCT.md.
 -->
 
 <header class="nav">
-  <a class="wordmark" href="/" aria-label="Actira home">Actira</a>
+  <a class="brand" href="/" aria-label="Actira home">
+    <img class="brand-mark" src="/assets/mark-160.png" width="34" height="13" alt="">
+    <span class="wordmark">Actira</span>
+  </a>
   <a class="nav-link" href="https://calendly.com/actira">Book a call</a>
 </header>
 
 <main>
   <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <img class="hero-mark" src="/assets/mark-800.png" width="800" height="315" alt="" aria-hidden="true" decoding="async" fetchpriority="low">
     <div class="col">
       <h1 id="hero-title" class="display">
         <span class="line">Paid leads in.</span>
@@ -68,46 +76,79 @@ the detector pass, and PRODUCT.md.
   </section>
 
   <section class="panel problem" aria-labelledby="problem-title">
+    <div class="beam" aria-hidden="true"></div>
     <div class="col">
-      <h2 id="problem-title" class="headline">You already paid for the lead.</h2>
-      <p class="body">
-        Most inquiries wait hours for a reply. By then the patient has messaged
-        someone else, and the money that produced the lead is gone.
-      </p>
-      <p class="body strong">The ad worked. The follow-up didn't.</p>
+      <div class="problem-grid">
+        <div>
+          <h2 id="problem-title" class="headline">You already paid for the lead.</h2>
+          <p class="body">
+            Most inquiries wait hours for a reply. By then the patient has messaged
+            someone else, and the money that produced the lead is gone.
+          </p>
+          <p class="body strong">The ad worked. The follow-up didn't.</p>
+        </div>
+        <figure class="leak" aria-hidden="true">
+          <div class="leak-bar leak-in"><span>Lead arrives</span></div>
+          <div class="leak-bar leak-wait"><span>Waiting for a reply</span></div>
+          <div class="leak-bar leak-gone"><span>Booked elsewhere</span></div>
+        </figure>
+      </div>
     </div>
   </section>
 
   <section class="flow" aria-labelledby="flow-title">
-    <div class="wide">
+    <div class="col">
       <h2 id="flow-title" class="headline">What happens after the lead arrives.</h2>
-      <ol class="rail">
-        <li><span class="node"></span><span class="step">Lead</span></li>
-        <li><span class="node"></span><span class="step">Instant response</span></li>
-        <li><span class="node"></span><span class="step">Follow-up</span></li>
-        <li><span class="node"></span><span class="step">Consultation</span></li>
-        <li><span class="node"></span><span class="step">Reminder</span></li>
-        <li><span class="node"></span><span class="step">Booked patient</span></li>
-      </ol>
+      <div class="instrument">
+        <div class="instrument-grid" aria-hidden="true"></div>
+        <ol class="rail">
+          <li><span class="node"></span><span class="step">Lead</span><span class="sub">Form, DM, call</span></li>
+          <li><span class="node"></span><span class="step">Instant response</span><span class="sub">Under a minute</span></li>
+          <li><span class="node"></span><span class="step">Follow-up</span><span class="sub">Until they answer</span></li>
+          <li><span class="node"></span><span class="step">Consultation</span><span class="sub">On your calendar</span></li>
+          <li><span class="node"></span><span class="step">Reminder</span><span class="sub">Before the visit</span></li>
+          <li><span class="node"></span><span class="step">Booked patient</span><span class="sub">In the chair</span></li>
+        </ol>
+      </div>
       <p class="caption rail-note">Every step is handled the moment it is due, not when someone at the front desk has a minute.</p>
     </div>
   </section>
 
   <section class="panel included" aria-labelledby="included-title">
+    <div class="beam" aria-hidden="true"></div>
     <div class="col">
       <h2 id="included-title" class="headline">Included.</h2>
       <ul class="list">
-        <li>Instant reply to every new inquiry, by SMS and email</li>
-        <li>Follow-up sequences for leads that go quiet</li>
-        <li>Missed-call recovery by text</li>
-        <li>Consultation booking straight into your calendar</li>
-        <li>Appointment reminders</li>
-        <li>No-show recovery and dormant-lead reactivation</li>
+        <li>
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4A2.5 2.5 0 0 1 4 13.5z"/><path d="M8.5 9h7M8.5 12h4"/></svg>
+          <span>Instant reply to every new inquiry, by SMS and email</span>
+        </li>
+        <li>
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6L20 8.5"/><path d="M20 4v4.5h-4.5"/><path d="M20 12a8 8 0 0 1-13.7 5.6L4 15.5"/><path d="M4 20v-4.5h4.5"/></svg>
+          <span>Follow-up sequences for leads that go quiet</span>
+        </li>
+        <li>
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/><path d="M15 4l5 5M20 4l-5 5"/></svg>
+          <span>Missed-call recovery by text</span>
+        </li>
+        <li>
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/><path d="M9.5 15.5l2 2 3.5-4"/></svg>
+          <span>Consultation booking straight into your calendar</span>
+        </li>
+        <li>
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>
+          <span>Appointment reminders</span>
+        </li>
+        <li>
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/><path d="M12 8v4l2.5 2.5"/></svg>
+          <span>No-show recovery and dormant-lead reactivation</span>
+        </li>
       </ul>
     </div>
   </section>
 
   <section class="close" aria-labelledby="close-title">
+    <img class="close-mark" src="/assets/mark-800.png" width="800" height="315" alt="" aria-hidden="true" decoding="async" loading="lazy">
     <div class="col">
       <h2 id="close-title" class="headline">See where your leads are leaking.</h2>
       <p class="body">
@@ -120,7 +161,10 @@ the detector pass, and PRODUCT.md.
 </main>
 
 <footer class="footer">
-  <span class="wordmark small">Actira</span>
+  <span class="brand">
+    <img class="brand-mark" src="/assets/mark-160.png" width="34" height="13" alt="">
+    <span class="wordmark small">Actira</span>
+  </span>
   <a class="footer-link" href="mailto:hello@getactira.com">hello@getactira.com</a>
 </footer>
 </body>
