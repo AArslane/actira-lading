@@ -66,17 +66,25 @@ void main() {
   gl_FragColor = vec4(col * uGain, 1.0);
 }`;
 
-  // floor lifts the darkest reflection so a dark label stays above 4.5:1
+  // floor lifts the darkest reflection so the dark button label stays above 4.5:1;
+  // a lower baseColor keeps the clipped white highlights thin instead of glowing
+  const FIELD = {
+    baseColor: [0.05, 0.05, 0.056], amplitude: 0.3, frequencyX: 3, frequencyY: 3,
+    speed: 0.12, hoverBoost: 1, floor: 0, gain: 0.45, bevel: 0,
+    aa: false, scale: 0.6, maxDpr: 1, interactive: false,
+  };
   const PRESETS = {
+    hero: FIELD,
+    field: FIELD,
     button: {
-      baseColor: [0.28, 0.28, 0.295], amplitude: 0.18, frequencyX: 2.2, frequencyY: 2.2,
-      speed: 0.4, hoverBoost: 2.4, floor: 0.44, gain: 1, bevel: 0.3,
+      baseColor: [0.19, 0.19, 0.2], amplitude: 0.18, frequencyX: 2.2, frequencyY: 2.2,
+      speed: 0.35, hoverBoost: 1.8, floor: 0.46, gain: 0.9, bevel: 0.22,
       aa: true, scale: 1, maxDpr: 2, interactive: true,
     },
-    hero: {
-      baseColor: [0.05, 0.05, 0.056], amplitude: 0.3, frequencyX: 3, frequencyY: 3,
-      speed: 0.12, hoverBoost: 1, floor: 0, gain: 0.45, bevel: 0,
-      aa: false, scale: 0.6, maxDpr: 1, interactive: false,
+    ribbon: {
+      baseColor: [0.2, 0.2, 0.21], amplitude: 0.22, frequencyX: 2.5, frequencyY: 2.5,
+      speed: 0.3, hoverBoost: 1, floor: 0.3, gain: 0.9, bevel: 0.15,
+      aa: true, scale: 1, maxDpr: 2, interactive: false,
     },
     mark: {
       baseColor: [0.16, 0.16, 0.17], amplitude: 0.25, frequencyX: 2.5, frequencyY: 2.5,
@@ -96,22 +104,22 @@ void main() {
     return s;
   }
 
-  function mountChrome(el, p) {
+  function createChrome(el, p) {
     const canvas = document.createElement("canvas");
     const gl = canvas.getContext("webgl", {
       antialias: false, alpha: false, depth: false, stencil: false,
       premultipliedAlpha: false, powerPreference: "low-power",
     });
-    if (!gl) return;
+    if (!gl) return null;
 
     const vs = compile(gl, gl.VERTEX_SHADER, VERT);
     const fs = compile(gl, gl.FRAGMENT_SHADER, frag(p.aa));
-    if (!vs || !fs) return;
+    if (!vs || !fs) return null;
     const prog = gl.createProgram();
     gl.attachShader(prog, vs);
     gl.attachShader(prog, fs);
     gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return null;
     gl.useProgram(prog);
 
     const buf = gl.createBuffer();
@@ -138,7 +146,7 @@ void main() {
     let t = Math.random() * 20;
     let mx = 0, my = 0, tx = 0, ty = 0;
     let boost = 1, boostTarget = 1;
-    let raf = 0, last = 0, inView = false;
+    let raf = 0, last = 0;
 
     const draw = () => {
       gl.uniform1f(uTime, t);
@@ -169,7 +177,7 @@ void main() {
     };
 
     const start = () => {
-      if (raf || reduceMotion || document.hidden || !inView) return;
+      if (raf || reduceMotion || document.hidden) return;
       last = performance.now();
       raf = requestAnimationFrame(frame);
     };
@@ -177,43 +185,84 @@ void main() {
       cancelAnimationFrame(raf);
       raf = 0;
     };
+    const onVisibility = () => (document.hidden ? stop() : start());
 
-    new ResizeObserver(resize).observe(el);
-    new IntersectionObserver(([entry]) => {
-      inView = entry.isIntersecting;
-      inView ? start() : stop();
-    }).observe(el);
-    document.addEventListener("visibilitychange", () => (document.hidden ? stop() : start()));
+    const ro = new ResizeObserver(resize);
+    ro.observe(el);
+    document.addEventListener("visibilitychange", onVisibility);
 
-    if (p.interactive) {
-      const host = el.closest("a, button") || el;
-      host.addEventListener("pointermove", (e) => {
-        const r = host.getBoundingClientRect();
-        tx = (e.clientX - r.left) / r.width;
-        ty = 1 - (e.clientY - r.top) / r.height;
-      });
-      host.addEventListener("pointerenter", () => (boostTarget = p.hoverBoost));
-      host.addEventListener("pointerleave", () => {
-        boostTarget = 1;
-        tx = 0;
-        ty = 0;
-      });
+    const host = p.interactive ? el.closest("a, button") || el : null;
+    const onMove = (e) => {
+      const r = host.getBoundingClientRect();
+      tx = (e.clientX - r.left) / r.width;
+      ty = 1 - (e.clientY - r.top) / r.height;
+    };
+    const onEnter = () => (boostTarget = p.hoverBoost);
+    const onLeave = () => {
+      boostTarget = 1;
+      tx = 0;
+      ty = 0;
+    };
+    if (host) {
+      host.addEventListener("pointermove", onMove);
+      host.addEventListener("pointerenter", onEnter);
+      host.addEventListener("pointerleave", onLeave);
     }
 
     resize();
-    el.classList.add("is-live");
+    start();
+    requestAnimationFrame(() => el.classList.add("is-live"));
+
+    return {
+      destroy() {
+        stop();
+        ro.disconnect();
+        document.removeEventListener("visibilitychange", onVisibility);
+        if (host) {
+          host.removeEventListener("pointermove", onMove);
+          host.removeEventListener("pointerenter", onEnter);
+          host.removeEventListener("pointerleave", onLeave);
+        }
+        el.classList.remove("is-live");
+        const lose = gl.getExtension("WEBGL_lose_context");
+        if (lose) lose.loseContext();
+        canvas.remove();
+      },
+    };
   }
 
-  document.querySelectorAll("[data-liquid-chrome]").forEach((el) => {
-    // a stale or missing stylesheet leaves the host static; never inject a canvas into unstyled layout
-    if (getComputedStyle(el).position !== "absolute") return;
-    const preset = PRESETS[el.dataset.liquidChrome] || PRESETS.button;
+  // a stale or missing stylesheet leaves hosts static; never inject a canvas into unstyled layout
+  const hosts = Array.from(document.querySelectorAll("[data-liquid-chrome]")).filter(
+    (el) => getComputedStyle(el).position === "absolute"
+  );
+  const instances = new Map();
+
+  const mount = (el) => {
+    if (instances.has(el)) return;
+    let inst = null;
     try {
-      mountChrome(el, preset);
+      inst = createChrome(el, PRESETS[el.dataset.liquidChrome] || PRESETS.button);
     } catch (_) {
-      /* static silver fallback stays in place */
+      inst = null;
     }
-  });
+    instances.set(el, inst);
+  };
+  const unmount = (el) => {
+    const inst = instances.get(el);
+    if (inst) inst.destroy();
+    instances.delete(el);
+  };
+
+  // contexts live only near the viewport, so a phone never holds more than a handful
+  if ("IntersectionObserver" in window) {
+    const chromeIO = new IntersectionObserver(
+      (entries) => entries.forEach((e) => (e.isIntersecting ? mount(e.target) : unmount(e.target))),
+      { rootMargin: "300px 0px" }
+    );
+    hosts.forEach((el) => chromeIO.observe(el));
+  } else {
+    hosts.forEach(mount);
+  }
 
   /* ---------- Scroll reveals ---------- */
 
@@ -229,30 +278,25 @@ void main() {
           io.unobserve(entry.target);
         });
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.15 }
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.12 }
     );
     revealables.forEach((el) => io.observe(el));
-  }
 
-  /* ---------- Grid spotlight ---------- */
-
-  const hero = document.querySelector(".hero");
-  if (hero && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    let pending = false, px = 0, py = 0;
-    hero.addEventListener("pointermove", (e) => {
-      const r = hero.getBoundingClientRect();
-      px = e.clientX - r.left;
-      py = e.clientY - r.top;
-      if (pending) return;
-      pending = true;
-      requestAnimationFrame(() => {
-        hero.style.setProperty("--mx", px + "px");
-        hero.style.setProperty("--my", py + "px");
-        hero.classList.add("spot-on");
-        pending = false;
+    // failsafe: never leave on-screen content hidden if an observer callback is delayed
+    let queued = false;
+    const sweep = () => {
+      queued = false;
+      const limit = window.innerHeight * 0.95;
+      revealables.forEach((el) => {
+        if (!el.classList.contains("in") && el.getBoundingClientRect().top < limit) el.classList.add("in");
       });
-    });
-    hero.addEventListener("pointerleave", () => hero.classList.remove("spot-on"));
+    };
+    window.addEventListener("scroll", () => {
+      if (queued) return;
+      queued = true;
+      setTimeout(sweep, 600);
+    }, { passive: true });
+    setTimeout(sweep, 1500);
   }
 
   /* ---------- Live lead demo ---------- */
