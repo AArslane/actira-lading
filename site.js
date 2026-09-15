@@ -78,6 +78,11 @@ void main() {
       speed: 0.12, hoverBoost: 1, floor: 0, gain: 0.45, bevel: 0,
       aa: false, scale: 0.6, maxDpr: 1, interactive: false,
     },
+    mark: {
+      baseColor: [0.16, 0.16, 0.17], amplitude: 0.25, frequencyX: 2.5, frequencyY: 2.5,
+      speed: 0.18, hoverBoost: 1, floor: 0.12, gain: 1, bevel: 0,
+      aa: false, scale: 0.75, maxDpr: 1.5, interactive: false,
+    },
   };
 
   function compile(gl, type, src) {
@@ -200,6 +205,8 @@ void main() {
   }
 
   document.querySelectorAll("[data-liquid-chrome]").forEach((el) => {
+    // a stale or missing stylesheet leaves the host static; never inject a canvas into unstyled layout
+    if (getComputedStyle(el).position !== "absolute") return;
     const preset = PRESETS[el.dataset.liquidChrome] || PRESETS.button;
     try {
       mountChrome(el, preset);
