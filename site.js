@@ -81,9 +81,9 @@ void main() {
       speed: 0.35, hoverBoost: 1.8, floor: 0.46, gain: 0.9, bevel: 0.22,
       aa: true, scale: 1, maxDpr: 2, interactive: true,
     },
-    ribbon: {
-      baseColor: [0.2, 0.2, 0.21], amplitude: 0.22, frequencyX: 2.5, frequencyY: 2.5,
-      speed: 0.3, hoverBoost: 1, floor: 0.3, gain: 0.9, bevel: 0.15,
+    bar: {
+      baseColor: [0.14, 0.14, 0.15], amplitude: 0.24, frequencyX: 2.4, frequencyY: 2.4,
+      speed: 0.35, hoverBoost: 1, floor: 0.22, gain: 0.9, bevel: 0,
       aa: true, scale: 1, maxDpr: 2, interactive: false,
     },
     mark: {
@@ -155,10 +155,10 @@ void main() {
     };
 
     const resize = () => {
-      const r = el.getBoundingClientRect();
+      // layout size, not getBoundingClientRect: a host inside a scaled-in bar would report 0 height
       const dpr = Math.min(window.devicePixelRatio || 1, p.maxDpr) * p.scale;
-      canvas.width = Math.max(1, Math.round(r.width * dpr));
-      canvas.height = Math.max(1, Math.round(r.height * dpr));
+      canvas.width = Math.max(1, Math.round(el.clientWidth * dpr));
+      canvas.height = Math.max(1, Math.round(el.clientHeight * dpr));
       gl.viewport(0, 0, canvas.width, canvas.height);
       gl.uniform2f(uRes, canvas.width, canvas.height);
       draw();

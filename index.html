@@ -17,9 +17,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="/style.css?v=5">
+  <link rel="stylesheet" href="/style.css?v=6">
   <script>document.documentElement.classList.add("js");</script>
-  <script src="/site.js?v=5" defer></script>
+  <script src="/site.js?v=6" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -38,10 +38,10 @@ THESIS: A follow-up layer sold like infrastructure. The hero shows the product w
 describing it. Refuses the agency landing page: no illustration hero, no stat row, no logo strip.
 OWN-WORLD: One ground (#0a0a0b), dial-white type, one material: liquid chrome rendered live in
 WebGL. Near-black with silver veins as the field behind every section, each field placed
-differently; brushed silver on the actions and the decay ribbon. Frosted panels sit over the
-chrome. Sections meet on a single fading chrome beam. Geist, two weights.
-STORY: You already paid for the lead. It decays while it waits. Actira handles every step the
-moment it is due. Book 15 minutes.
+differently; brushed silver on the actions and the hot bar of the lead temperature chart.
+Frosted panels sit over the chrome. Sections meet on a single fading chrome beam. Geist, two weights.
+STORY: You already paid for the lead. It goes cold within the hour (HBR 2011: 7x lower odds one
+hour later, 60x after a day). Actira handles every step the moment it is due. Book 15 minutes.
 FIRST VIEWPORT: Full-height liquid chrome field, Actira mark cut out of chrome at right. Left:
 two-line display headline, lead, silver CTA, qualifier. Right: live example of one inquiry going
 from form to booked consultation.
@@ -138,40 +138,53 @@ the detector pass, and PRODUCT.md.
   <section class="band problem" aria-labelledby="problem-title">
     <div class="beam" aria-hidden="true"></div>
     <div class="field field-problem" data-liquid-chrome="field" aria-hidden="true"></div>
-    <div class="col split">
-      <div class="split-copy" data-reveal>
+    <div class="col">
+      <div class="section-head" data-reveal>
         <h2 id="problem-title" class="headline">You already paid for the lead.</h2>
-        <p class="body">
-          Most inquiries wait hours for a reply. By then the patient has messaged
-          someone else, and the money that produced the lead is gone.
-        </p>
-        <p class="body strong">The ad worked. The follow-up didn't.</p>
+        <div>
+          <p class="body">
+            A new inquiry is hot the moment it arrives. In an audit of 2,241 US
+            companies, the average reply took 42 hours. By then the lead is cold.
+          </p>
+          <p class="body strong">The ad worked. The follow-up didn't.</p>
+        </div>
       </div>
 
-      <figure class="decay glass" data-reveal aria-label="Illustration: an inquiry cools off the longer it waits for a reply">
+      <figure class="temp glass" data-reveal>
         <figcaption class="card-head">
-          <span class="card-title">One inquiry, left waiting</span>
-          <span class="tag">Illustration</span>
+          <span class="card-title">How fast a lead goes cold</span>
+          <span class="tag"><span class="tag-long">Harvard Business Review</span><span class="tag-short">HBR 2011</span></span>
         </figcaption>
-        <div class="decay-track">
-          <div class="decay-ribbon" data-liquid-chrome="ribbon" aria-hidden="true"></div>
-        </div>
-        <ol class="decay-scale" aria-hidden="true">
-          <li>Inquiry</li>
-          <li>5 min</li>
-          <li>1 hour</li>
-          <li>Next day</li>
-        </ol>
-        <div class="decay-legend">
-          <div>
-            <span class="legend-title">Ready to book</span>
-            <span class="legend-meta">Answered while the interest is live</span>
+
+        <div class="temp-chart" role="img" aria-label="Leads contacted within the first hour have the best odds of a real conversation. One hour later the odds are nearly 7 times lower. After 24 hours they are more than 60 times lower.">
+          <svg class="temp-curve" viewBox="0 0 600 100" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M100 0 C 200 0, 200 85.7, 300 85.7 S 400 98.3, 500 98.3" pathLength="1" vector-effect="non-scaling-stroke"/>
+          </svg>
+          <div class="temp-col temp-hot" style="--h:100%">
+            <div class="temp-value"><span class="temp-num">Best</span><span class="temp-unit">odds</span></div>
+            <div class="temp-bar"><span class="temp-bar-fx" data-liquid-chrome="bar"></span></div>
           </div>
-          <div class="legend-end">
-            <span class="legend-title">Booked elsewhere</span>
-            <span class="legend-meta">Answered after someone else did</span>
+          <div class="temp-col temp-warm" style="--h:14.3%">
+            <div class="temp-value"><span class="temp-num">7×</span><span class="temp-unit">lower odds</span></div>
+            <div class="temp-bar"></div>
+          </div>
+          <div class="temp-col temp-cold" style="--h:1.7%">
+            <div class="temp-value"><span class="temp-num">60×</span><span class="temp-unit">lower odds</span></div>
+            <div class="temp-bar"></div>
           </div>
         </div>
+
+        <div class="temp-axis" aria-hidden="true">
+          <div><span class="temp-stage">Hot</span><span class="temp-time">Within the first hour</span></div>
+          <div><span class="temp-stage">Warm</span><span class="temp-time">One hour later</span></div>
+          <div><span class="temp-stage">Cold</span><span class="temp-time">24 hours or more</span></div>
+        </div>
+
+        <p class="temp-source">
+          Odds of reaching a real conversation with the lead, relative to contact within the first
+          hour. 1.25 million leads across 42 US companies. Source:
+          <a href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads" target="_blank" rel="noopener">Oldroyd, McElheran &amp; Elkington, “The Short Life of Online Sales Leads,” Harvard Business Review, 2011</a>.
+        </p>
       </figure>
     </div>
   </section>
@@ -180,7 +193,7 @@ the detector pass, and PRODUCT.md.
     <div class="beam" aria-hidden="true"></div>
     <div class="field field-flow" data-liquid-chrome="field" aria-hidden="true"></div>
     <div class="col">
-      <div class="flow-head" data-reveal>
+      <div class="section-head" data-reveal>
         <h2 id="flow-title" class="headline">What happens after the lead arrives.</h2>
         <p class="body">Six steps, each one handled the moment it is due, not when someone at the front desk has a minute.</p>
       </div>
