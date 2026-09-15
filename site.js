@@ -81,11 +81,6 @@ void main() {
       speed: 0.35, hoverBoost: 1.8, floor: 0.46, gain: 0.9, bevel: 0.22,
       aa: true, scale: 1, maxDpr: 2, interactive: true,
     },
-    bar: {
-      baseColor: [0.14, 0.14, 0.15], amplitude: 0.24, frequencyX: 2.4, frequencyY: 2.4,
-      speed: 0.35, hoverBoost: 1, floor: 0.22, gain: 0.9, bevel: 0,
-      aa: true, scale: 1, maxDpr: 2, interactive: false,
-    },
     mark: {
       baseColor: [0.16, 0.16, 0.17], amplitude: 0.25, frequencyX: 2.5, frequencyY: 2.5,
       speed: 0.18, hoverBoost: 1, floor: 0.12, gain: 1, bevel: 0,

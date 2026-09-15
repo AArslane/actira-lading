@@ -449,16 +449,8 @@ section { position: relative; padding: var(--section) var(--gutter); }
 }
 .temp-unit { font-size: 13px; color: var(--dim); }
 
-.temp-hot .temp-bar {
-  background:
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 3px),
-    var(--silver);
-  box-shadow: var(--silver-edge);
-}
-.temp-bar-fx { position: absolute; inset: 0; }
-.temp-bar-fx canvas { width: 100%; height: 100%; display: block; }
-
-.temp-warm .temp-bar { background: #5f5f65; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28); }
+.temp-hot .temp-bar { background: #e4e4e7; }
+.temp-warm .temp-bar { background: #5f5f65; }
 .temp-warm .temp-num { color: #c2c2c7; }
 .temp-cold .temp-bar { background: #2a2a2f; }
 .temp-cold .temp-num { color: var(--dim); }
