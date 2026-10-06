@@ -76,6 +76,8 @@ void main() {
   const PRESETS = {
     hero: FIELD,
     field: FIELD,
+    // one frame, no animation loop: the middle sections keep the chrome look without the per-frame GPU cost
+    still: { ...FIELD, still: true },
     button: {
       baseColor: [0.19, 0.19, 0.2], amplitude: 0.18, frequencyX: 2.2, frequencyY: 2.2,
       speed: 0.35, hoverBoost: 1.8, floor: 0.46, gain: 0.9, bevel: 0.22,
@@ -172,7 +174,7 @@ void main() {
     };
 
     const start = () => {
-      if (raf || reduceMotion || document.hidden) return;
+      if (raf || p.still || reduceMotion || document.hidden) return;
       last = performance.now();
       raf = requestAnimationFrame(frame);
     };
@@ -296,30 +298,46 @@ void main() {
 
   /* ---------- Live lead demo ---------- */
 
+  // plays once when it comes into view and holds the finished state: under 5 s end to end,
+  // so nothing moves long enough to need a pause control (WCAG 2.2.2); Replay runs it again
   const demo = document.querySelector("[data-demo]");
-  if (demo && !reduceMotion) {
+  if (demo && !reduceMotion && "IntersectionObserver" in window) {
     const rows = Array.from(demo.querySelectorAll("[data-step]"));
-    const delays = [700, 1500, 1700, 1700, 1700];
-    let i = 0;
-    demo.classList.add("is-playing");
+    const replay = demo.querySelector("[data-demo-replay]");
+    const delays = [200, 1000, 1000, 1000, 1000];
+    let timers = [];
 
-    const next = () => {
-      if (i < rows.length) {
-        rows[i].classList.add("on");
-        i += 1;
-        setTimeout(next, delays[i] || 1700);
-        return;
-      }
-      setTimeout(() => {
-        demo.classList.add("is-resetting");
-        setTimeout(() => {
-          rows.forEach((r) => r.classList.remove("on"));
-          demo.classList.remove("is-resetting");
-          i = 0;
-          setTimeout(next, 500);
-        }, 500);
-      }, 4200);
+    const play = () => {
+      timers.forEach(clearTimeout);
+      timers = [];
+      rows.forEach((r) => r.classList.remove("on"));
+      demo.classList.remove("is-done");
+      replay.hidden = true;
+      let at = 0;
+      rows.forEach((row, i) => {
+        at += delays[i];
+        timers.push(setTimeout(() => row.classList.add("on"), at));
+      });
+      timers.push(setTimeout(() => {
+        demo.classList.add("is-done");
+        replay.hidden = false;
+      }, at + 700));
     };
-    setTimeout(next, delays[0]);
+
+    demo.classList.add("is-playing");
+    const demoIO = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        demoIO.disconnect();
+        play();
+      },
+      { threshold: 0.2 }
+    );
+    demoIO.observe(demo);
+    replay.addEventListener("click", () => {
+      play();
+      // the button hides while playing; keep keyboard focus on the card instead of losing it to <body>
+      demo.focus({ preventScroll: true });
+    });
   }
 })();

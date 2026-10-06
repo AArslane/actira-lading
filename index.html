@@ -17,9 +17,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="/style.css?v=9">
+  <link rel="stylesheet" href="/style.css?v=10">
   <script>document.documentElement.classList.add("js");</script>
-  <script src="/site.js?v=9" defer></script>
+  <script src="/site.js?v=10" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -55,7 +55,10 @@ the detector pass, and PRODUCT.md.
     <img class="brand-mark" src="/assets/mark-160.png" width="34" height="13" alt="">
     <span class="wordmark">Actira</span>
   </a>
-  <a class="nav-link" href="https://cal.com/getactira/30min" data-cal-link="getactira/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view","theme":"dark"}'>Book a call</a>
+  <nav class="nav-links" aria-label="Main">
+    <a class="nav-link" href="#pricing">Pricing</a>
+    <a class="nav-link" href="https://cal.com/getactira/30min" data-cal-link="getactira/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view","theme":"dark"}'>Book a call</a>
+  </nav>
 </header>
 
 <main>
@@ -79,15 +82,17 @@ the detector pass, and PRODUCT.md.
             <span class="btn-chrome-fx" data-liquid-chrome="button" aria-hidden="true"></span>
             <span class="btn-chrome-label">Book a 15-minute audit</span>
           </a>
-          <p class="qualifier">For independent med spas running Meta Ads. No contracts.</p>
+          <!-- Founding price: when both founding spots are taken, change to "From $1,000/month" (see the pricing card). -->
+          <p class="qualifier">For independent med spas running Meta Ads. From $500/month, no contracts.</p>
         </div>
       </div>
 
-      <figure class="demo glass" data-demo aria-label="Example: one inquiry handled from form to booked consultation">
+      <figure class="demo glass" data-demo tabindex="-1" aria-label="Example: one inquiry handled from form to booked consultation">
         <figcaption class="card-head">
           <span class="demo-pulse" aria-hidden="true"></span>
           <span class="card-title">One inquiry, handled</span>
           <span class="tag">Example</span>
+          <button type="button" class="demo-replay" data-demo-replay hidden>Replay</button>
         </figcaption>
         <ol class="demo-feed">
           <li class="demo-row" data-step>
@@ -137,7 +142,7 @@ the detector pass, and PRODUCT.md.
 
   <section class="band problem" aria-labelledby="problem-title">
     <div class="beam" aria-hidden="true"></div>
-    <div class="field field-problem" data-liquid-chrome="field" aria-hidden="true"></div>
+    <div class="field field-problem" data-liquid-chrome="still" aria-hidden="true"></div>
     <div class="col">
       <div class="section-head" data-reveal>
         <h2 id="problem-title" class="headline">You already paid for the lead.</h2>
@@ -191,7 +196,7 @@ the detector pass, and PRODUCT.md.
 
   <section class="band flow" aria-labelledby="flow-title">
     <div class="beam" aria-hidden="true"></div>
-    <div class="field field-flow" data-liquid-chrome="field" aria-hidden="true"></div>
+    <div class="field field-flow" data-liquid-chrome="still" aria-hidden="true"></div>
     <div class="col">
       <div class="section-head" data-reveal>
         <h2 id="flow-title" class="headline">What happens after the lead arrives.</h2>
@@ -212,7 +217,7 @@ the detector pass, and PRODUCT.md.
 
   <section class="band included" aria-labelledby="included-title">
     <div class="beam" aria-hidden="true"></div>
-    <div class="field field-included" data-liquid-chrome="field" aria-hidden="true"></div>
+    <div class="field field-included" data-liquid-chrome="still" aria-hidden="true"></div>
     <div class="col split split-top">
       <div class="split-copy sticky" data-reveal>
         <h2 id="included-title" class="headline">Included.</h2>
@@ -250,17 +255,17 @@ the detector pass, and PRODUCT.md.
 
   <section class="band pricing" id="pricing" aria-labelledby="pricing-title">
     <div class="beam" aria-hidden="true"></div>
-    <div class="field field-pricing" data-liquid-chrome="field" aria-hidden="true"></div>
+    <div class="field field-pricing" data-liquid-chrome="still" aria-hidden="true"></div>
     <div class="col">
-      <div class="section-head" data-reveal>
+      <div class="section-head">
         <h2 id="pricing-title" class="headline">One plan.</h2>
         <p class="body">Everything in Included. No setup fee. Month to month.</p>
       </div>
 
-      <div class="plan glass" data-reveal>
+      <div class="plan glass">
         <div class="card-head">
           <span class="card-title">Founding client</span>
-          <!-- Update by hand when a founding client signs. At 0, switch to the $1,000 plan and link. -->
+          <!-- Update by hand when a founding client signs. At 0, switch to the $1,000 plan and link, and the hero qualifier to "From $1,000/month". -->
           <span class="tag">2 spots remaining</span>
         </div>
         <div class="plan-body">
@@ -282,6 +287,10 @@ the detector pass, and PRODUCT.md.
             </a>
             <a class="btn-line" href="https://buy.stripe.com/28EfZg90ReT516Y71e1Fe00">Start your subscription</a>
           </div>
+        </div>
+        <div class="plan-foot">
+          <p class="plan-next">After you subscribe: a setup call to connect your lead forms, phone line and calendar.</p>
+          <p class="plan-fine">SMS and phone-number fees, if any, are billed at cost. Cancel anytime. <a href="/terms">Terms</a></p>
         </div>
       </div>
     </div>
