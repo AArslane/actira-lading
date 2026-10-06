@@ -17,6 +17,8 @@ The three CTAs in `index.html`:
 - the nav link "Book a call" (line ~58)
 - the hero button "Book a 15-minute audit" (line ~78)
 - the closing button "Book a 15-minute audit" (line ~261)
+- the pricing card button "Book a 15-minute audit" (`.plan-actions`, added by ticket 02): it already
+  has the Cal.com `href`, `data-cal-link` and `data-cal-config`; it still needs `data-cal-namespace`
 
 ## How
 

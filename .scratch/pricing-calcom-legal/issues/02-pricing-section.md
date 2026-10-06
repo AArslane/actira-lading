@@ -44,3 +44,14 @@ A new section between **Included** and the closing CTA. It follows the existing 
 - The price, "2 spots remaining" and "for life" are readable with JavaScript disabled
 - A screen reader (or the accessibility tree) reads "Regular price $1,000, Founding price $500 per month"
 - `getactira.com/#pricing` scrolls to the card; the Stripe button opens the $500/month checkout
+
+## Progress (2026-10-06)
+
+Done: section, copy, `id="pricing"`, screen-reader price, spots comment, `.btn-line` style,
+`style.css?v=8`. Checked at 375px (JS on and off) and 1280px: no horizontal scroll; the price
+reads "Regular price $1,000, Founding price $500 per month".
+
+Left open, waiting on ticket 06: in `index.html`, replace the HTML comment under the audit
+button in `.plan-actions` with
+`<a class="btn-line" href="STRIPE_FOUNDING_LINK">Start your subscription</a>`.
+The style is already in `style.css`.
