@@ -1,6 +1,6 @@
 # 06: Create the Stripe Payment Link
 
-Status: ready-for-human
+Status: done
 Type: task
 
 Done in the Stripe dashboard by Arslane. The page only needs the resulting URL (ticket 02).
@@ -18,3 +18,6 @@ When both founding spots are taken: make a $1,000/month link and swap it in.
 ## Done when
 
 - The live link opens a $500/month checkout
+
+Done 2026-10-06: `https://buy.stripe.com/28EfZg90ReT516Y71e1Fe00`, $500.00 USD/month.
+The checkout header shows the Stripe public business name "Arslane.A", not "Actira".

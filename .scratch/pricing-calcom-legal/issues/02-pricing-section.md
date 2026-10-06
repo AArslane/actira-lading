@@ -1,6 +1,6 @@
 # 02: Pricing section
 
-Status: ready-for-agent
+Status: done
 Type: task
 
 ## What
@@ -55,3 +55,6 @@ Left open, waiting on ticket 06: in `index.html`, replace the HTML comment under
 button in `.plan-actions` with
 `<a class="btn-line" href="STRIPE_FOUNDING_LINK">Start your subscription</a>`.
 The style is already in `style.css`.
+
+Stripe button added with the live link from ticket 06; it opens a $500.00 USD/month
+subscription checkout ("Actira Lead Recovery — Founder").
