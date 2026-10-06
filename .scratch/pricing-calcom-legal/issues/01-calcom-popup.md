@@ -1,6 +1,6 @@
 # 01: Cal.com pop-up on the three CTAs
 
-Status: ready-for-agent
+Status: done
 Type: task
 
 ## Event
@@ -39,3 +39,10 @@ The three CTAs in `index.html`:
 - With JavaScript disabled, each CTA opens the Cal.com page in the same tab
 - No `calendly` left anywhere: `grep -ri calendly .` returns only this `.scratch/` folder
 - The test booking shows up in your Cal.com bookings (then cancel it)
+
+## Comments
+
+2026-10-06: done. Namespace `30min`, loader from Cal.com's own snippet source. Cal's
+element-click handler opens the pop-up but does not cancel an `<a>`'s navigation, so a small
+click listener in `index.html` cancels it once `Cal.instance` exists; before that (or if embed.js
+is blocked) the plain link books. All four CTAs checked: pop-up opens, page stays.

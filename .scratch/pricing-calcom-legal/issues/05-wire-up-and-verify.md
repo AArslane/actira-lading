@@ -1,6 +1,6 @@
 # 05: Footer links, PRODUCT.md, cache bump, final check
 
-Status: ready-for-agent
+Status: done
 Type: task
 Blocked by: 01, 02, 03, 04, 06
 
@@ -31,3 +31,9 @@ Serve the folder with clean URLs (`npx serve .`; a plain file open won't resolve
 - [ ] `prefers-reduced-motion` still respected; contrast ≥ 4.5:1 on the new text
 - [ ] `.vercelignore` still keeps `.scratch/` off the live site: after deploy,
       `getactira.com/.scratch/pricing-calcom-legal/spec.md` returns 404
+
+## Comments
+
+2026-10-06: done locally. Cache bumped to `?v=9` (v=8 already shipped with ticket 02).
+Calendly grep empty. Still to run after deploy: the Vercel-preview pass, and the
+`.scratch/` 404 check (already 404 on production for the earlier deploy).

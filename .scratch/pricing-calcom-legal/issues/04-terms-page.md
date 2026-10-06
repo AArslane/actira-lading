@@ -1,6 +1,6 @@
 # 04: Terms page
 
-Status: ready-for-agent
+Status: done
 Type: task
 Blocked by: 02
 
@@ -38,3 +38,8 @@ English only. Canonical `https://getactira.com/terms`.
 - `/terms` loads at desktop and 375px, readable with JavaScript off
 - The prices in `/terms` and in the pricing section on `/` are identical
 
+
+## Comments
+
+2026-10-06: done. Vercel address checked against vercel.com/legal/privacy-policy. Prices match
+the pricing section ($1,000/month, $500/month).

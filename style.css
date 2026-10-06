@@ -726,6 +726,43 @@ section { position: relative; padding: var(--section) var(--gutter); }
   padding: 24px var(--gutter);
   border-top: 1px solid var(--hairline);
 }
+.footer-links { display: flex; flex-wrap: wrap; column-gap: 24px; }
+
+/* ---------- Legal pages ---------- */
+
+.legal {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: calc(56px + 88px) var(--gutter) 120px;
+}
+.legal h1 {
+  font-size: clamp(36px, 4.2vw, 48px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.legal .updated { font-size: 15px; color: var(--dim); margin-top: 16px; }
+.legal h2 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  margin: 56px 0 16px;
+}
+.legal p,
+.legal li { font-size: 16px; line-height: 1.65; color: var(--dim); }
+.legal p + p { margin-top: 12px; }
+.legal ul { padding-left: 20px; margin: 12px 0 0; }
+.legal li + li { margin-top: 8px; }
+.legal strong { color: var(--text); font-weight: 500; }
+.legal a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 150ms var(--ease);
+}
+.legal a:hover { text-decoration-color: var(--text); }
 
 /* ---------- Reveals ---------- */
 
@@ -823,4 +860,5 @@ section { position: relative; padding: var(--section) var(--gutter); }
   .btn-line { width: 100%; }
   .close-mark { width: 140vw; }
   .footer { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .legal { padding-top: calc(56px + 56px); padding-bottom: 88px; }
 }

@@ -17,9 +17,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="/style.css?v=8">
+  <link rel="stylesheet" href="/style.css?v=9">
   <script>document.documentElement.classList.add("js");</script>
-  <script src="/site.js?v=7" defer></script>
+  <script src="/site.js?v=9" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -55,7 +55,7 @@ the detector pass, and PRODUCT.md.
     <img class="brand-mark" src="/assets/mark-160.png" width="34" height="13" alt="">
     <span class="wordmark">Actira</span>
   </a>
-  <a class="nav-link" href="https://calendly.com/actira">Book a call</a>
+  <a class="nav-link" href="https://cal.com/getactira/30min" data-cal-link="getactira/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view","theme":"dark"}'>Book a call</a>
 </header>
 
 <main>
@@ -75,7 +75,7 @@ the detector pass, and PRODUCT.md.
           reminders, no-show recovery.
         </p>
         <div class="actions">
-          <a class="btn-chrome" href="https://calendly.com/actira">
+          <a class="btn-chrome" href="https://cal.com/getactira/30min" data-cal-link="getactira/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view","theme":"dark"}'>
             <span class="btn-chrome-fx" data-liquid-chrome="button" aria-hidden="true"></span>
             <span class="btn-chrome-label">Book a 15-minute audit</span>
           </a>
@@ -276,7 +276,7 @@ the detector pass, and PRODUCT.md.
             <p class="plan-line">From the third client: $1,000/month.</p>
           </div>
           <div class="plan-actions">
-            <a class="btn-chrome" href="https://cal.com/getactira/30min" data-cal-link="getactira/30min" data-cal-config='{"layout":"month_view","theme":"dark"}'>
+            <a class="btn-chrome" href="https://cal.com/getactira/30min" data-cal-link="getactira/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view","theme":"dark"}'>
               <span class="btn-chrome-fx" data-liquid-chrome="button" aria-hidden="true"></span>
               <span class="btn-chrome-label">Book a 15-minute audit</span>
             </a>
@@ -297,7 +297,7 @@ the detector pass, and PRODUCT.md.
         15 minutes. You walk me through your current lead flow, I show you where
         it breaks and what it would take to close the gap.
       </p>
-      <a class="btn-chrome" href="https://calendly.com/actira">
+      <a class="btn-chrome" href="https://cal.com/getactira/30min" data-cal-link="getactira/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view","theme":"dark"}'>
         <span class="btn-chrome-fx" data-liquid-chrome="button" aria-hidden="true"></span>
         <span class="btn-chrome-label">Book a 15-minute audit</span>
       </a>
@@ -310,7 +310,23 @@ the detector pass, and PRODUCT.md.
     <img class="brand-mark" src="/assets/mark-160.png" width="34" height="13" alt="">
     <span class="wordmark small">Actira</span>
   </span>
-  <a class="footer-link" href="mailto:hello@getactira.com">hello@getactira.com</a>
+  <nav class="footer-links" aria-label="Legal">
+    <a class="footer-link" href="mailto:hello@getactira.com">hello@getactira.com</a>
+    <a class="footer-link" href="/privacy">Privacy</a>
+    <a class="footer-link" href="/terms">Terms</a>
+  </nav>
 </footer>
+<!-- Cal.com element-click embed: the CTAs keep a plain href, so booking still works without JS -->
+<script>
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "30min", {origin:"https://cal.com"});
+Cal.ns["30min"]("ui", {"theme":"dark","cssVarsPerTheme":{"light":{"cal-brand":"#0a0a0b"},"dark":{"cal-brand":"#c9c9ce"}},"hideEventTypeDetails":false,"layout":"month_view"});
+// the embed opens its pop-up but leaves the link's default alone, so the page would also navigate
+// away; cancel it only once embed.js has loaded (Cal.instance), otherwise the plain link still books
+document.addEventListener("click", function (e) {
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  if (e.target.closest("a[data-cal-link]") && window.Cal && Cal.instance) e.preventDefault();
+});
+</script>
 </body>
 </html>

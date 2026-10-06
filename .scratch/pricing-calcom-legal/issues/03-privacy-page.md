@@ -1,6 +1,6 @@
 # 03: Privacy page
 
-Status: ready-for-agent
+Status: done
 Type: task
 
 ## What
@@ -43,3 +43,9 @@ Set `<link rel="canonical" href="https://getactira.com/privacy">`.
 - Every service the page loads is listed in section 3. Check by opening the Network tab on
   `index.html` and matching each outside domain to a line
 - The page reads fully with JavaScript disabled
+
+## Comments
+
+2026-10-06: done. Home page outside domains: fonts.googleapis.com, fonts.gstatic.com,
+app.cal.com; all listed. Cal.com's line says its script loads with the home page (it sees the
+IP before any booking). 12-month retention published as written: still to confirm.
