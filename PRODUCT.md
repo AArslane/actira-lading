@@ -34,7 +34,7 @@ Not an AI agency, not an automation agency, not lead-gen, not social media. A fo
 - All copy in served HTML; page must read fully with JavaScript disabled.
 - No invented statistics, no fabricated ROI, no fake testimonials or client logos.
 - Never claim a specific prospect has poor follow-up.
-- Primary CTA: Cal.com `cal.com/getactira/30min`, opened as a pop-up (element-click embed) with the plain link as the no-JS fallback. Copy says "15-minute audit"; the 30-minute slot is a buffer.
+- Primary CTA: Cal.com `cal.com/getactira/15` (15-minute "Audit Call" event), opened as a pop-up (element-click embed) with the plain link as the no-JS fallback. The event URL follows its length: change the length in Cal.com and the link changes too.
 - Legal pages live at `/privacy` and `/terms`, English only.
 
 ## Brand Commitments
