@@ -655,88 +655,6 @@ section { position: relative; padding: var(--section) var(--gutter); }
 .feature-title { font-size: 18px; font-weight: 500; color: var(--text); letter-spacing: -0.015em; }
 .feature-meta { font-size: 15px; color: var(--dim); line-height: 1.45; }
 
-/* ---------- Pricing ---------- */
-
-.field-pricing {
-  -webkit-mask-image: radial-gradient(70% 100% at 88% 30%, #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 80%);
-  mask-image: radial-gradient(70% 100% at 88% 30%, #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 80%);
-}
-
-.plan { padding: 22px 28px 28px; }
-
-.plan-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 40px 64px;
-  align-items: end;
-  padding-top: 32px;
-}
-
-/* flat like the temperature chart: type and tone only, no material */
-.plan-price {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 4px 16px;
-  margin-bottom: 20px;
-}
-.plan-was {
-  font-size: 28px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--dim);
-  text-decoration-thickness: 2px;
-  font-variant-numeric: tabular-nums;
-}
-.plan-now {
-  font-size: clamp(56px, 6vw, 80px);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  font-variant-numeric: tabular-nums;
-}
-.plan-new { display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap; }
-.plan-per { font-size: 18px; color: var(--dim); }
-.plan-line { font-size: 15px; line-height: 1.5; color: var(--dim); }
-.plan-line:first-of-type { color: var(--text); font-weight: 500; }
-.plan-line + .plan-line { margin-top: 4px; }
-
-.plan-actions { display: flex; flex-direction: column; gap: 12px; }
-
-.plan-foot {
-  display: grid;
-  gap: 6px;
-  margin-top: 28px;
-  padding-top: 18px;
-  border-top: 1px solid var(--hairline);
-}
-.plan-next { font-size: 15px; line-height: 1.5; color: var(--text); }
-.plan-fine { font-size: 15px; line-height: 1.5; color: var(--dim); }
-.plan-fine a {
-  color: var(--text);
-  text-decoration: underline;
-  text-decoration-color: rgba(255, 255, 255, 0.3);
-  text-underline-offset: 3px;
-}
-.plan-fine a:hover { text-decoration-color: var(--text); }
-
-.btn-line {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 54px;
-  padding: 0 30px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: var(--text);
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-  transition: border-color 150ms var(--ease), background-color 150ms var(--ease);
-}
-.btn-line:hover { border-color: var(--text); background: rgba(255, 255, 255, 0.05); }
-
 /* ---------- Close ---------- */
 
 .field-close {
@@ -844,8 +762,6 @@ section { position: relative; padding: var(--section) var(--gutter); }
   .section-head { grid-template-columns: 1fr; gap: 20px; }
   .section-head > :last-child { justify-self: start; }
   .field-problem { -webkit-mask-image: radial-gradient(110% 55% at 20% 85%, #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 80%); mask-image: radial-gradient(110% 55% at 20% 85%, #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 80%); }
-  .plan-body { grid-template-columns: 1fr; align-items: start; }
-  .plan-actions { flex-direction: row; flex-wrap: wrap; }
   .field-included { -webkit-mask-image: radial-gradient(110% 55% at 30% 95%, #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 80%); mask-image: radial-gradient(110% 55% at 30% 95%, #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 80%); }
 }
 
@@ -894,14 +810,7 @@ section { position: relative; padding: var(--section) var(--gutter); }
   .features { padding: 4px 18px; }
   .features li { grid-template-columns: 40px minmax(0, 1fr); gap: 14px; align-items: start; }
   .feature-icon { width: 40px; height: 40px; }
-  .plan { padding: 18px 18px 20px; }
-  .plan-foot { margin-top: 24px; }
   .nav-links { gap: 18px; }
-  .plan-body { gap: 28px; padding-top: 24px; }
-  .plan-was { font-size: 22px; }
-  .plan-per { font-size: 15px; }
-  .plan-actions { flex-direction: column; }
-  .btn-line { width: 100%; }
   .close-mark { width: 140vw; }
   .footer { flex-direction: column; align-items: flex-start; gap: 12px; }
   .legal { padding-top: calc(56px + 56px); padding-bottom: 88px; }
