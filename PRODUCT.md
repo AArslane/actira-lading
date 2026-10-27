@@ -12,7 +12,7 @@ Owner or manager of an independent US med spa (1-3 locations), selling high-valu
 
 ## Product Purpose
 
-Actira sells a lead-to-booking follow-up system: instant lead response, SMS/email follow-up sequences, missed-call recovery, consultation booking, reminders, no-show and dormant-lead reactivation. Price: $1,000/month standard. The first 2 clients are founding clients at $500/month for life (while the subscription stays active). No setup fee, month to month. Paid through a Stripe Payment Link on the pricing card (`getactira.com/#pricing`).
+Actira sells a lead-to-booking follow-up system: instant lead response, SMS/email follow-up sequences, missed-call recovery, consultation booking, reminders, no-show and dormant-lead reactivation. The site shows no price and no payment link (decided 2026-10-27): price is discussed on the audit call. No setup fee, month to month.
 
 Success for the visitor: they understand who this is for, what breaks between lead and booking, and book a 15-minute audit.
 
